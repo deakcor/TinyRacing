@@ -1,15 +1,10 @@
 extends Car
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	carmodel=get_node("cont")
+	high=0.2
+	wheel_left=get_node("cont/futuristic_car/wheel_frontRight")
+	wheel_right=get_node("cont/futuristic_car/wheel_frontLeft")
 func _input(event):
 	if event.is_action_pressed("acceleration"):
 		accelerate=true
@@ -25,7 +20,7 @@ func _input(event):
 		if turning==1:
 			turning=0
 	elif event.is_action_pressed("right"):
-		turning=2
+		turning=-1
 	elif event.is_action_released("right"):
-		if turning==2:
+		if turning==-1:
 			turning=0
