@@ -8,12 +8,12 @@
 script = ExtResource( 2 )
 
 [node name="CollisionShape" parent="." index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7 )
 
 [node name="cont" type="Spatial" parent="." index="1"]
 
 [node name="futuristic_car" parent="cont" index="0" instance=ExtResource( 3 )]
-transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 0, -0.2, -1 )
+transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 0, -0.2, -0.7 )
 
 [node name="pos_wheel1" parent="." index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.2, -0.2 )
