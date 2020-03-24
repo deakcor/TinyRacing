@@ -5,6 +5,8 @@ func _ready():
 	high=0.2
 	wheel_left=get_node("cont/futuristic_car/wheel_frontRight")
 	wheel_right=get_node("cont/futuristic_car/wheel_frontLeft")
+	MAX_SPEED=15.0
+	ACCELERATION=0.5
 func _input(event):
 	if event.is_action_pressed("acceleration"):
 		accelerate=true

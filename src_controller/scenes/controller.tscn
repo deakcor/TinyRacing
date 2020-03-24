@@ -1,12 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/controller.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/hud/button_stop_normal.png" type="Texture" id=2]
+[ext_resource path="res://assets/hud/button_stop_pressed.png" type="Texture" id=3]
+[ext_resource path="res://assets/hud/button_go_normal.png" type="Texture" id=4]
+[ext_resource path="res://assets/hud/button_go_pressed.png" type="Texture" id=5]
 
 [node name="controller" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.247059, 0.486275, 0.713726, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -19,16 +30,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="accelerate_button" type="TouchScreenButton" parent="."]
-position = Vector2( 572.789, 128.878 )
-scale = Vector2( 5.94478, 5.63154 )
-normal = ExtResource( 2 )
+[node name="decelerate_button" type="TextureButton" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -600.0
+margin_right = 600.0
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="decelerate_button" type="TouchScreenButton" parent="."]
-position = Vector2( 74.4626, 130.31 )
-scale = Vector2( 5.94478, 5.63154 )
-normal = ExtResource( 2 )
-[connection signal="pressed" from="accelerate_button" to="." method="_on_accelerate_button_pressed"]
-[connection signal="released" from="accelerate_button" to="." method="_on_accelerate_button_released"]
-[connection signal="pressed" from="decelerate_button" to="." method="_on_decelerate_button_pressed"]
-[connection signal="released" from="decelerate_button" to="." method="_on_decelerate_button_released"]
+[node name="accelerate_button2" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -600.0
+margin_top = -600.0
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_down" from="decelerate_button" to="." method="_on_decelerate_button_pressed"]
+[connection signal="button_up" from="decelerate_button" to="." method="_on_decelerate_button_released"]
+[connection signal="button_down" from="accelerate_button2" to="." method="_on_accelerate_button_pressed"]
+[connection signal="button_up" from="accelerate_button2" to="." method="_on_accelerate_button_released"]

@@ -2,12 +2,12 @@ extends KinematicBody
 
 class_name Car
 
-const MAX_SPEED:=20.0
-const MAX_SPEED_BACK:=-5.0
-const ACCELERATION:=1.0
-const DECELERATION_FREIN:=1.0
-const DECELERATION:=0.5
-const TURN_SPEED:=20.0
+var MAX_SPEED:=20.0
+var MAX_SPEED_BACK:=-5.0
+var ACCELERATION:=1.0
+var DECELERATION_FREIN:=1.0
+var DECELERATION:=0.5
+var TURN_SPEED:=20.0
 const G:=10.0
 
 var high:=1.0
@@ -18,6 +18,7 @@ var dir:=Vector3.FORWARD
 var motion:=Vector3.ZERO
 var turning:=0.0
 var floor_normal:=Vector3.ONE
+var slow_down:=1.0
 
 var carmodel
 var wheel_left
@@ -40,9 +41,9 @@ func _physics_process(delta):
 			derapage2=$pos_wheel2.global_transform.origin
 	if  !flying:
 		if decelerate:
-			speed=lerp(speed,MAX_SPEED_BACK,delta*DECELERATION_FREIN)
+			speed=lerp(speed,MAX_SPEED_BACK*slow_down,delta*DECELERATION_FREIN)
 		elif accelerate:
-			speed=lerp(speed,MAX_SPEED,delta*ACCELERATION)
+			speed=lerp(speed,MAX_SPEED*slow_down,delta*ACCELERATION)
 		
 		else:
 			speed=lerp(speed,0,delta*DECELERATION)
@@ -73,10 +74,14 @@ func animation():
 	var realdir=dir
 	look_at(global_transform.origin+realdir,Vector3.UP)
 	var space_state := get_world().direct_space_state
-	var result := space_state.intersect_ray(global_transform.origin, global_transform.origin+Vector3.DOWN*(high+0.1), [self])
+	var result := space_state.intersect_ray(global_transform.origin, global_transform.origin+Vector3.DOWN*(high+1.0), [self])
 	if result:
 		flying=false
 		floor_normal=result.normal+Vector3(1,0,1)
+		if result.collider is StaticBody:
+			slow_down=1.0
+		else:
+			slow_down=1.0
 	else:
 		flying=true
 	
