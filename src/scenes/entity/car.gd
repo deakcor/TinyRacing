@@ -41,9 +41,9 @@ func _physics_process(delta):
 			derapage2=$pos_wheel2.global_transform.origin
 	if  !flying:
 		if decelerate:
-			speed=lerp(speed,MAX_SPEED_BACK*slow_down,delta*DECELERATION_FREIN)
+			speed=lerp(speed,MAX_SPEED_BACK*slow_down,delta*DECELERATION_FREIN/slow_down)
 		elif accelerate:
-			speed=lerp(speed,MAX_SPEED*slow_down,delta*ACCELERATION)
+			speed=lerp(speed,MAX_SPEED*slow_down,delta*ACCELERATION/slow_down)
 		
 		else:
 			speed=lerp(speed,0,delta*DECELERATION)
@@ -79,7 +79,7 @@ func animation():
 		flying=false
 		floor_normal=result.normal+Vector3(1,0,1)
 		if result.collider is StaticBody:
-			slow_down=1.0
+			slow_down=0.1
 		else:
 			slow_down=1.0
 	else:
