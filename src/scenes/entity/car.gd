@@ -19,6 +19,7 @@ var motion:=Vector3.ZERO
 var turning:=0.0
 var floor_normal:=Vector3.ONE
 var slow_down:=1.0
+var lock=true
 
 var carmodel
 var wheel_left
@@ -39,7 +40,7 @@ func _physics_process(delta):
 		if decelerate and !flying:
 			derapage=$pos_wheel1.global_transform.origin
 			derapage2=$pos_wheel2.global_transform.origin
-	if  !flying:
+	if  !flying and !lock:
 		if decelerate:
 			speed=lerp(speed,MAX_SPEED_BACK*slow_down,delta*DECELERATION_FREIN/slow_down)
 		elif accelerate:
@@ -52,6 +53,8 @@ func _physics_process(delta):
 			(TURN_SPEED/(abs(speed)) if abs(speed)>5.0 else speed)
 			*
 			(turning))
+	if lock:
+		speed=lerp(speed,0,delta*DECELERATION_FREIN/slow_down)
 	motion.x=speed*dir.x
 	motion.z=speed*dir.z
 	

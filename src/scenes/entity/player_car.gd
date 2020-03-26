@@ -1,5 +1,7 @@
 extends Car
 
+class_name PlayerCar
+
 func _ready():
 	carmodel=get_node("cont")
 	high=0.2

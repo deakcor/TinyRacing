@@ -1,8 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/entity/player_car.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/world.gd" type="Script" id=2]
 [ext_resource path="res://3d/decors/tilemap.meshlib" type="MeshLibrary" id=3]
+[ext_resource path="res://scenes/obj/checker.tscn" type="PackedScene" id=4]
+[ext_resource path="res://font/kenvector_future.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://font/kenvector_future_thin.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/hud/phone.png" type="Texture" id=7]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.5
@@ -39,6 +43,142 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("v_box_container/title:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("v_box_container/texture_rect:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ), Vector2( 0.6, 0.6 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("v_box_container/label:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=11]
+size = 120
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 60
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "start"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("label:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6, 0.9, 1.1, 1.4, 1.6, 1.9, 2.6, 2.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.1, 0.1 ), Vector2( 1, 1 ), Vector2( 0.1, 0.1 ), Vector2( 1, 1 ), Vector2( 0.1, 0.1 ), Vector2( 1, 1 ), Vector2( 0.1, 0.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("label:text")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6, 1.1, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "3
+", "2", "1", "GO!" ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "go"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("label:percent_visible")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.6, 0.7, 1.1, 1.2, 1.6, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0 ]
+}
+
+[sub_resource type="DynamicFont" id=9]
+size = 120
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
 [node name="world" type="Spatial"]
 script = ExtResource( 2 )
 
@@ -64,11 +204,11 @@ far = 200.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.1, -7 )
 
 [node name="directional_light" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.537403, 0.843326, 0, -0.843326, 0.537403, 0, 17.3909, 0 )
+transform = Transform( 1, 0, 0, 0, 0.300823, 0.95368, 0, -0.95368, 0.300823, 0, 17.3909, 0 )
 shadow_enabled = true
 shadow_color = Color( 0.392157, 0.392157, 0.392157, 1 )
-directional_shadow_split_2 = 0.293
-directional_shadow_split_3 = 0.155
+directional_shadow_split_1 = 0.094
+directional_shadow_split_2 = 0.194
 directional_shadow_max_distance = 300.0
 
 [node name="draw" type="ImmediateGeometry" parent="."]
@@ -82,7 +222,7 @@ transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -0.1
 mesh_library = ExtResource( 3 )
 cell_scale = 4.0
 data = {
-"cells": PoolIntArray( 1, 0, 536871002, 65521, 0, 537526345, 65523, 0, 538312714, 262127, 0, 537526313, 0, 1, 538312713, 4, 1, 538312707, 65518, 1, 537919603, 65519, 1, 537919603, 0, 2, 538312707, 17, 2, 538312756, 65527, 2, 536871010, 1, 4, 536871008, 17, 4, 537919558, 65523, 4, 537526344, 65534, 4, 538312806, 0, 5, 536871021, 21, 5, 536871008, 23, 5, 537526335, 0, 6, 538312709, 65521, 6, 536870961, 65523, 6, 537526363, 27, 7, 537526324, 1, 8, 536870964, 19, 8, 538312805, 21, 8, 536871008, 21, 9, 536871008, 24, 9, 537919491, 21, 10, 536871008, 65525, 10, 537919537, 17, 11, 538312705, 24, 11, 537919491, 27, 11, 537526368, 19, 12, 538312805, 23, 12, 537526368, 21, 13, 536871003, 24, 13, 537919491, 27, 13, 537526363, 29, 13, 537919591, 7, 14, 537919540, 24, 14, 538312706, 13, 16, 538312767, 17, 16, 538312800, 21, 17, 537919551, 5, 18, 536870975, 7, 18, 537526352, 9, 18, 538312795, 11, 18, 538312795, 17, 18, 537919558, 21, 19, 537919540, 25, 19, 536870914, 11, 20, 537919551, 22, 20, 537526275, 24, 20, 537526275, 21, 22, 536870929, 23, 22, 536870929, 25, 22, 536870933, 65517, 65504, 537526293, 65519, 65504, 537526289, 65521, 65505, 538312768, 1, 65506, 538312800, 65516, 65506, 538312722, 65519, 65507, 536871003, 65529, 65507, 537919557, 65519, 65509, 536870982, 5, 65512, 536871008, 7, 65512, 537526324, 65518, 65513, 536870983, 65520, 65513, 536870983, 1, 65515, 538312722, 65533, 65515, 538312738, 65535, 65515, 538312738, 131069, 65515, 537526283, 131071, 65515, 537526283, 196605, 65515, 536870948, 5, 65516, 536870983, 262139, 65516, 536870953, 1, 65517, 538312722, 65529, 65517, 537919506, 65533, 65517, 538312738, 65535, 65517, 538312738, 196603, 65517, 537919525, 1, 65519, 538312722, 65529, 65519, 537919506, 65533, 65519, 538312738, 65535, 65519, 538312738, 196603, 65519, 537919526, 196605, 65519, 537919526, 196607, 65519, 537526308, 65520, 65520, 537526343, 65522, 65520, 537526343, 65524, 65520, 538312704, 65529, 65521, 537919506, 131067, 65521, 536870923, 131069, 65521, 536870923, 196605, 65521, 537526309, 196607, 65521, 537526308, 1, 65523, 538312704, 65524, 65523, 538312705, 65519, 65524, 536870984, 65521, 65524, 537526342, 65535, 65524, 655464, 65518, 65525, 1441798, 65519, 65528, 538312739, 65521, 65528, 536871008, 65533, 65528, 538312756, 65519, 65530, 1441826, 65521, 65530, 655433, 65523, 65530, 1441802, 131053, 65530, 33, 131055, 65530, 655396, 196591, 65530, 538312741, 65521, 65531, 1048618, 65519, 65532, 538312738, 65521, 65532, 536871008, 65523, 65532, 1441802, 131053, 65532, 33, 196591, 65532, 538312742, 1, 65534, 91, 3, 65534, 537526324, 65519, 65534, 538312737, 65521, 65534, 537526345, 65523, 65534, 1441802, 65527, 65534, 98, 131053, 65534, 33, 196591, 65534, 1441829, 4, 65535, 1441795, 65521, 65535, 537919530, 65534, 65535, 538312808 )
+"cells": PoolIntArray( 1, 0, 536871002, 32, 0, 536871019, 65521, 0, 655433, 65523, 0, 1441802, 262127, 0, 537526313, 0, 1, 1441801, 4, 1, 1441795, 65518, 1, 1048691, 65519, 1, 1048691, 0, 2, 1441795, 17, 2, 1441844, 29, 2, 107, 65527, 2, 536871010, 1, 4, 96, 17, 4, 537919558, 65516, 4, 107, 65523, 4, 655432, 65534, 4, 1441894, 0, 5, 109, 21, 5, 96, 23, 5, 655423, 65514, 5, 108, 0, 6, 1441797, 65516, 6, 108, 65521, 6, 49, 65523, 6, 537526363, 27, 7, 655412, 1, 8, 52, 19, 8, 538312805, 21, 8, 536871008, 21, 9, 96, 24, 9, 537919491, 21, 10, 536871008, 65525, 10, 1048625, 17, 11, 1441793, 24, 11, 1048579, 27, 11, 537526368, 19, 12, 1441893, 23, 12, 537526368, 21, 13, 91, 24, 13, 537919491, 27, 13, 537526363, 29, 13, 1048679, 65521, 13, 536871020, 7, 14, 1048628, 14, 14, 108, 24, 14, 1441794, 65522, 15, 108, 65525, 15, 108, 13, 16, 1441855, 17, 16, 1441888, 65516, 16, 107, 21, 17, 1048639, 5, 18, 63, 7, 18, 655440, 9, 18, 1441883, 11, 18, 1441883, 17, 18, 1048646, 31, 18, 107, 21, 19, 1048628, 25, 19, 2, 33, 19, 108, 11, 20, 1048639, 22, 20, 655363, 24, 20, 655363, 31, 21, 108, 2, 22, 107, 21, 22, 17, 23, 22, 17, 25, 22, 21, 65522, 23, 107, 4, 26, 107, 0, 65498, 108, 65525, 65498, 108, 2, 65500, 107, 4, 65501, 107, 65525, 65501, 107, 65528, 65501, 108, 65523, 65502, 108, 65517, 65504, 655381, 65519, 65504, 655377, 65521, 65505, 1441856, 1, 65506, 1441888, 65516, 65506, 1441810, 65519, 65507, 91, 65529, 65507, 1048645, 65519, 65509, 70, 65514, 65510, 108, 65512, 65511, 107, 5, 65512, 96, 7, 65512, 655412, 65526, 65512, 108, 65535, 65512, 108, 65515, 65513, 107, 65518, 65513, 71, 65520, 65513, 71, 2, 65514, 108, 1, 65515, 1441810, 65533, 65515, 1441826, 65535, 65515, 1441826, 131069, 65515, 655371, 131071, 65515, 655371, 196605, 65515, 36, 5, 65516, 71, 262139, 65516, 41, 1, 65517, 1441810, 13, 65517, 107, 65529, 65517, 1048594, 65533, 65517, 1441826, 65535, 65517, 1441826, 196603, 65517, 1048613, 1, 65519, 1441810, 16, 65519, 108, 65529, 65519, 1048594, 65533, 65519, 1441826, 65535, 65519, 1441826, 196603, 65519, 1048614, 196605, 65519, 1048614, 196607, 65519, 655396, 65520, 65520, 655431, 65522, 65520, 655431, 65524, 65520, 1441792, 65529, 65521, 1048594, 131067, 65521, 11, 131069, 65521, 11, 196605, 65521, 655397, 196607, 65521, 655396, 1, 65523, 1441792, 14, 65523, 108, 65524, 65523, 1441793, 17, 65524, 107, 65519, 65524, 72, 65521, 65524, 655430, 65535, 65524, 655464, 65518, 65525, 1441798, 65527, 65525, 108, 65529, 65527, 108, 65519, 65528, 1441827, 65521, 65528, 96, 65526, 65528, 108, 65533, 65528, 1441844, 13, 65529, 107, 65519, 65530, 1441826, 65521, 65530, 655433, 65523, 65530, 1441802, 131053, 65530, 33, 131055, 65530, 655396, 196591, 65530, 1441829, 17, 65531, 108, 65521, 65531, 1048618, 65519, 65532, 1441826, 65521, 65532, 96, 65523, 65532, 1441802, 131053, 65532, 33, 196591, 65532, 1441830, 1, 65534, 91, 3, 65534, 655412, 29, 65534, 107, 65519, 65534, 1441825, 65521, 65534, 655433, 65523, 65534, 1441802, 65527, 65534, 98, 131053, 65534, 33, 196591, 65534, 1441829, 4, 65535, 1441795, 11, 65535, 108, 65521, 65535, 1048618, 65534, 65535, 1441896 )
 }
 __meta__ = {
 "_editor_clip_": 0,
@@ -94,9 +234,200 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
 mesh_library = ExtResource( 3 )
 cell_scale = 4.0
 data = {
-"cells": PoolIntArray( 65530, 1, 537526367, 14, 3, 536870985, 65528, 3, 536871007, 65530, 3, 537526365, 3, 5, 538312735, 65530, 7, 537526366, 65530, 9, 537526366, 65530, 11, 537526366, 65530, 12, 537526367, 65528, 14, 536871007, 65530, 14, 537526365, 131064, 14, 536870956, 131065, 14, 536870956, 14, 20, 537526316, 15, 20, 537526316, 16, 20, 537526316, 17, 20, 537526316, 65528, 23, 536870965, 14, 28, 538312783, 0, 29, 537919519, 6, 30, 537919568, 14, 30, 537919551, 65525, 65517, 537919519, 65530, 65523, 537526366, 65530, 65525, 537526367, 65528, 65527, 536871007, 65530, 65527, 537526365, 65534, 65527, 537526325, 14, 65530, 537526303, 65531, 65530, 536870944, 65535, 65530, 537526287, 65518, 65531, 538312735, 65530, 65531, 537526366, 65518, 65533, 537919541, 65530, 65533, 537526366, 65530, 65535, 537526366 )
+"cells": PoolIntArray( 65530, 1, 655455, 14, 3, 73, 65528, 3, 95, 65530, 3, 537526365, 3, 5, 1441823, 15, 7, 39, 65530, 7, 655454, 65530, 9, 537526366, 65530, 11, 655454, 65530, 12, 655455, 65528, 14, 95, 65530, 14, 655453, 131064, 14, 44, 131065, 14, 44, 14, 20, 655404, 15, 20, 537526316, 16, 20, 537526316, 17, 20, 655404, 65528, 23, 53, 14, 28, 1441871, 0, 29, 1048607, 6, 30, 1048656, 14, 30, 1048639, 65525, 65517, 1048607, 65530, 65523, 655454, 65530, 65525, 655455, 65528, 65527, 95, 65530, 65527, 655453, 65534, 65527, 655413, 14, 65530, 655391, 65531, 65530, 32, 65535, 65530, 655375, 65518, 65531, 1441823, 65530, 65531, 655454, 65518, 65533, 1048629, 65530, 65533, 655454, 65530, 65535, 655454 )
 }
 __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
+
+[node name="tuto" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_right = -1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="animation_player" type="AnimationPlayer" parent="tuto"]
+autoplay = "open"
+playback_speed = 0.5
+anims/open = SubResource( 7 )
+
+[node name="v_box_container" type="VBoxContainer" parent="tuto"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="tuto/v_box_container"]
+margin_top = 109.0
+margin_right = 1920.0
+margin_bottom = 244.0
+rect_pivot_offset = Vector2( 960, 67 )
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 4
+text = "TINY RACING"
+align = 1
+valign = 1
+
+[node name="texture_rect" type="TextureRect" parent="tuto/v_box_container"]
+margin_top = 294.0
+margin_right = 1920.0
+margin_bottom = 852.0
+rect_pivot_offset = Vector2( 960, 280 )
+texture = ExtResource( 7 )
+stretch_mode = 4
+
+[node name="label2" type="Label" parent="tuto/v_box_container/texture_rect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1241.96
+margin_top = 69.2189
+margin_right = 678.036
+margin_bottom = 208.219
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "bake"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label3" type="Label" parent="tuto/v_box_container/texture_rect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -689.85
+margin_top = 66.9468
+margin_right = 1230.15
+margin_bottom = 205.947
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "Speed
+up"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label4" type="Label" parent="tuto/v_box_container/texture_rect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1648.66
+margin_top = -58.0172
+margin_right = 271.335
+margin_bottom = 80.9828
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "turn"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label5" type="Label" parent="tuto/v_box_container/texture_rect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -264.972
+margin_top = -80.7379
+margin_right = 1655.03
+margin_bottom = 58.2621
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "turn"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="tuto/v_box_container"]
+margin_top = 902.0
+margin_right = 1920.0
+margin_bottom = 970.0
+rect_pivot_offset = Vector2( 960, 34 )
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "Accelerate to continue"
+align = 1
+valign = 1
+
+[node name="starter" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="animation_player" type="AnimationPlayer" parent="starter"]
+playback_speed = 0.5
+anims/start = SubResource( 8 )
+
+[node name="label" type="Label" parent="starter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.1, 0.1 )
+rect_pivot_offset = Vector2( 960, 540 )
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 4
+text = "3
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="checker" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -7 )
+id = 1
+
+[node name="checker2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -14 )
+
+[node name="checker3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -39 )
+id = 2
+
+[node name="checker4" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 57 )
+id = 3
+
+[node name="checker5" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, -11 )
+id = 4
+
+[node name="checker6" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 13 )
+id = 5
+[connection signal="animation_finished" from="tuto/animation_player" to="." method="_on_animation_player_animation_finished"]
