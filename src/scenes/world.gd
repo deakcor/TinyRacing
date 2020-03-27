@@ -31,8 +31,15 @@ func check(id:int):
 				state=3
 				print(str(int(timer/60))+":"+str(stepify(fmod(timer,60),0.01)))
 				$player_car.lock=true
-			lap+=1
-			print(lap)
+			else:
+				
+				lap+=1
+				if lap<3:
+					
+					$lap/label2.text="\n\nLap "+str(lap)+"/3"
+				else:
+					$lap/label2.text="\n\nLast lap!"
+				$lap/animation_player.play("anim")
 
 func clear_next_draw():
 
