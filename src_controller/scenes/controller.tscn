@@ -22,7 +22,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label" type="Label" parent="."]
+[node name="joy" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="joy"]
 margin_right = 149.0
 margin_bottom = 101.0
 text = "test"
@@ -30,7 +37,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="decelerate_button" type="TextureButton" parent="."]
+[node name="decelerate_button" type="TextureButton" parent="joy"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -600.0
@@ -44,7 +51,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="accelerate_button2" type="TextureButton" parent="."]
+[node name="accelerate_button2" type="TextureButton" parent="joy"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -59,7 +66,7 @@ texture_pressed = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="button_down" from="decelerate_button" to="." method="_on_decelerate_button_pressed"]
-[connection signal="button_up" from="decelerate_button" to="." method="_on_decelerate_button_released"]
-[connection signal="button_down" from="accelerate_button2" to="." method="_on_accelerate_button_pressed"]
-[connection signal="button_up" from="accelerate_button2" to="." method="_on_accelerate_button_released"]
+[connection signal="button_down" from="joy/decelerate_button" to="." method="_on_decelerate_button_pressed"]
+[connection signal="button_up" from="joy/decelerate_button" to="." method="_on_decelerate_button_released"]
+[connection signal="button_down" from="joy/accelerate_button2" to="." method="_on_accelerate_button_pressed"]
+[connection signal="button_up" from="joy/accelerate_button2" to="." method="_on_accelerate_button_released"]
