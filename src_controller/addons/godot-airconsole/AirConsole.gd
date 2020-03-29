@@ -173,7 +173,7 @@ func _init():
 	}
 	""")
 	
-	js("airconsole = new AirConsole({ synchronize_time:true, orientation: 'landscape',device_motion:30 })")
+	js("airconsole = new AirConsole({ synchronize_time:true, orientation: 'landscape',device_motion:10 })")
 	js("signals = []")
 	
 	js("""

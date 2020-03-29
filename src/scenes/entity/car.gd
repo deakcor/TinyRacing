@@ -5,7 +5,7 @@ class_name Car
 var MAX_SPEED:=20.0
 var MAX_SPEED_BACK:=-5.0
 var ACCELERATION:=1.0
-var DECELERATION_FREIN:=1.0
+var DECELERATION_FREIN:=0.7
 var DECELERATION:=0.5
 var TURN_SPEED:=20.0
 const G:=10.0
@@ -21,6 +21,7 @@ var floor_normal:=Vector3.ONE
 var slow_down:=1.0
 var lock=true
 var skidding=false
+var engine=false
 
 var carmodel
 var wheel_left
@@ -54,7 +55,7 @@ func _physics_process(delta):
 			speed=lerp(speed,0,delta*DECELERATION)
 		if turning!=0:
 			dir=dir.rotated(Vector3.UP,PI/4*delta*
-			(TURN_SPEED/(abs(speed)) if abs(speed)>5.0 else speed)
+			(TURN_SPEED/(abs(speed*(1 if decelerate else 2))) if abs(speed)>5.0 else speed/2)
 			*
 			(turning))
 	if lock:
@@ -73,6 +74,11 @@ func _physics_process(delta):
 	if !is_on_floor():
 		motion.y-=G*delta
 	animation()
+	if engine:
+		print(motion.length())
+		$audio_engine.pitch_scale=lerp($audio_engine.pitch_scale,2+2*motion.length()/MAX_SPEED*slow_down,delta*ACCELERATION/slow_down)
+	else:
+		$audio_engine.pitch_scale=lerp($audio_engine.pitch_scale,1*slow_down,delta*DECELERATION/slow_down)
 func animation():
 #	if carmodel!=null:
 #		carmodel.look_at(carmodel.global_transform.origin+realdir,Vector3.UP)

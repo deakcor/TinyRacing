@@ -1,12 +1,14 @@
 extends Node
 
-const SCREEN = 0
-const ORIENTATION_PORTRAIT = 'portrait'
-const ORIENTATION_LANDSCAPE = 'landscape'
+const SCREEN := 0
+const ORIENTATION_PORTRAIT := 'portrait'
+const ORIENTATION_LANDSCAPE := 'landscape'
 
-const PARSE_JS = true
+const PARSE_JS := true
 
-export(bool) var print_signal = true
+export(bool) var print_signal := false
+
+var ready:=false
 
 signal device_connected(device_id)
 signal device_disconnected(device_id)
@@ -161,7 +163,7 @@ func _forward_image_result(device_id):
 
 func _ready():
 	_setup_signals()
-	
+	pause_mode = Node.PAUSE_MODE_PROCESS
 	if print_signal:
 		print('GodotAirConsole initialized.')	
 

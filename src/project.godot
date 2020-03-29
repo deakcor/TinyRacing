@@ -33,6 +33,8 @@ config/icon="res://icon.png"
 [autoload]
 
 AirConsole="*res://addons/godot-airconsole/AirConsole.gd"
+Global="*res://scenes/global.gd"
+MusicManager="*res://scenes/music_manager.gd"
 
 [display]
 
@@ -81,6 +83,4 @@ quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 quality/shadows/filter_mode=2
-quality/filters/use_nearest_mipmap_filter=true
-quality/filters/msaa=4
 environment/default_environment="res://default_env.tres"
