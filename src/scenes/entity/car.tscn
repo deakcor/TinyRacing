@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/entity/car.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/engine.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/sound/frein.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/sound/hit.ogg" type="AudioStream" id=4]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5, 0.2, 1 )
@@ -19,3 +21,17 @@ shape = SubResource( 1 )
 [node name="audio_engine" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 2 )
 autoplay = true
+
+[node name="audio_derape" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+unit_db = -20.0
+pitch_scale = 4.0
+autoplay = true
+
+[node name="pos_back" type="Position3D" parent="."]
+
+[node name="pos_front" type="Position3D" parent="."]
+
+[node name="audio_hit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+unit_db = 10.0

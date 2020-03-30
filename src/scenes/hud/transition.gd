@@ -5,7 +5,7 @@ var nom_scene
 var param
 func _ready():
 	var val=1 if open else 0
-	
+	MusicManager.stop(0.5)
 	$Tween.interpolate_property(get_node("transition"), "cutoff", 1-val, val, 0.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 	$Tween.start()
 func init(nom_scene,open):

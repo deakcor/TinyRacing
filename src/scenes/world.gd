@@ -34,7 +34,7 @@ func try_ready():
 	if AirConsole.ready:
 		for id in AirConsole.get_controller_device_ids():
 			devices.push_back(id)
-		AirConsole.request_highscores("time_trial","5",[str(AirConsole.get_uid(player_device))],["world"])
+		AirConsole.request_highscores("time_trial","7",[str(AirConsole.get_uid(player_device))],["world"])
 		if devices.size()>0:
 			player_device=devices[0]
 			AirConsole.message(player_device,{"ready":true})
@@ -52,12 +52,14 @@ func check(id:int):
 			
 			if lap==2:
 				state=3
-				
+				$audio.stream=preload("res://assets/sound/last_lap.ogg")
+				$audio.play()
+				MusicManager.fade(preload("res://assets/music/title.ogg"),1.0,1.0)
 				$player_car.lock=true
 				if player_device!=-1:
 					timer_string=str("%02d:" % int(timer/60))+str(fmod(timer,60)).pad_zeros(2).pad_decimals(2)
 					AirConsole.message(player_device,{"finish":true})
-					AirConsole.store_highscore("time_trial", "5",1000000- timer*1000, str(AirConsole.get_uid(player_device)), ghost, timer_string)
+					AirConsole.store_highscore("time_trial", "7",1000000- timer*1000, str(AirConsole.get_uid(player_device)), ghost, timer_string)
 				print(timer_string)
 				print("ghost data")
 				print(ghost)
@@ -65,9 +67,12 @@ func check(id:int):
 				
 				lap+=1
 				if lap<2:
-					
+					$audio.stream=preload("res://assets/sound/lap.ogg")
+					$audio.play()
 					$lap/label2.text="\n\nLap "+str(lap)+"/2"
 				else:
+					$audio.stream=preload("res://assets/sound/last_lap.ogg")
+					$audio.play()
 					$lap/label2.text="\n\nLast lap!"
 				$lap/animation_player.play("anim")
 
@@ -108,9 +113,11 @@ func _on_AirConsole_message_received(device_id:int, data:Dictionary):
 		Global._changer_scene("world")
 
 #debug
-func _input(event):
-	if event.is_action_pressed("acceleration"):
-		start()
+#func _input(event):
+#	if event.is_action_pressed("acceleration"):
+#		start()
+#	if event.is_action_pressed("ui_cancel"):
+#		Global._changer_scene("world")
 
 func start():
 	if state==0:
@@ -164,7 +171,10 @@ func display_highscore(highscore:Dictionary={}):
 			$hightscore/v_box_container.add_child_below_node($hightscore/v_box_container/new,tmp2)
 		else:
 			tmp2.set_row(tmp_high[k][0],tmp_high[k][1],tmp_high[k][2],tmp_high[k][3])
-			$hightscore/v_box_container.add_child_below_node($hightscore/v_box_container/actual,tmp2)
+			if tmp_high[k][3]:
+				$hightscore/v_box_container.add_child_below_node($hightscore/v_box_container/new,tmp2)
+			else:
+				$hightscore/v_box_container.add_child_below_node($hightscore/v_box_container/actual,tmp2)
 	$hightscore/animation_player.play("appear")
 
 func rank_compare(a, b):
@@ -175,6 +185,7 @@ func rank_compare(a, b):
 	else:
 		return a[0]<b[0]
 func _on_AirConsole_highscores_stored(highscore):
+	AirConsole.message(player_device,{"highscore":true})
 	print("my highscore")
 	print(highscore)
 	if highscore==null:
@@ -189,7 +200,7 @@ func _on_AirConsole_device_connected(device_id:int):
 		devices.push_back(device_id)
 		if player_device==-1:
 			player_device=device_id
-		AirConsole.request_highscores("time_trial","5",[str(AirConsole.get_uid(player_device))],["world"])
+		AirConsole.request_highscores("time_trial","7",[str(AirConsole.get_uid(player_device))],["world"])
 
 func _on_AirConsole_device_disconnected(device_id:int):
 	var id=devices.find(device_id)
@@ -204,19 +215,19 @@ func _on_animation_player_animation_finished(anim_name):
 
 func _on_timer_ghost_timeout():
 	if state==2:
-		var p=$player_car.translation
-		var r=$player_car.rotation
+		var p=$player_car.carmodel.global_transform.origin
+		var r=$player_car.rotation+$player_car.carmodel.rotation
 		ghost.push_back({"timer":timer,"position":[p.x,p.y,p.z],"skidding":$player_car.skidding,"rotation":[r.x,r.y,r.z]})
 		$timer_ghost.start()
 		if best_ghost.size()>step:
 			var data=best_ghost[step]
-			var old_t=$ghost_car.translation
+			var old_t=$ghost_car.global_transform.origin
 			var new_t=Vector3(data.position[0],data.position[1],data.position[2])
 			$ghost_car.skidding=data.skidding
 			var old_r=$ghost_car.rotation
 			var new_r=Vector3(data.rotation[0],data.rotation[1],data.rotation[2])
 			$tween_ghost.interpolate_property(
-			$ghost_car, "translation", 
+			$ghost_car, "global_transform:origin", 
 			old_t, new_t, 0.1,
 			Tween.TRANS_LINEAR)
 			interpolate_rotation(old_r,new_r, 0.1, 0, 0)

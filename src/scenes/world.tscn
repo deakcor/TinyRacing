@@ -104,19 +104,19 @@ outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=9]
 size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=10]
 size = 60
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:visible")
@@ -217,14 +217,13 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=12]
 size = 120
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=12]
-resource_name = "anim"
+[sub_resource type="Animation" id=13]
 tracks/0/type = "value"
 tracks/0/path = NodePath("label2:rect_scale")
 tracks/0/interp = 1
@@ -254,8 +253,7 @@ tracks/1/keys = {
 size = 40
 font_data = ExtResource( 6 )
 
-[sub_resource type="Animation" id=13]
-resource_name = "appear"
+[sub_resource type="Animation" id=15]
 tracks/0/type = "value"
 tracks/0/path = NodePath("v_box_container:rect_scale")
 tracks/0/interp = 1
@@ -393,7 +391,7 @@ margin_right = 1432.0
 margin_bottom = 207.0
 rect_min_size = Vector2( 1432, 23 )
 rect_pivot_offset = Vector2( 716, 11 )
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 9 )
 text = "Game made with Godot Engine by Deakcor using Kenney assets"
 align = 1
 valign = 1
@@ -416,7 +414,7 @@ margin_left = -1241.96
 margin_top = 69.2189
 margin_right = 678.036
 margin_bottom = 208.219
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 2
@@ -436,7 +434,7 @@ margin_left = -689.85
 margin_top = 66.9468
 margin_right = 1230.15
 margin_bottom = 205.947
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 2
@@ -457,7 +455,7 @@ margin_left = -1648.66
 margin_top = -58.0172
 margin_right = 271.335
 margin_bottom = 80.9828
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 2
@@ -477,7 +475,7 @@ margin_left = -264.972
 margin_top = -80.7379
 margin_right = 1655.03
 margin_bottom = 58.2621
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 2
@@ -489,13 +487,14 @@ __meta__ = {
 }
 
 [node name="starter" type="CenterContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="animation_player" type="AnimationPlayer" parent="starter"]
 pause_mode = 2
 playback_speed = 0.5
-anims/start = SubResource( 10 )
+anims/start = SubResource( 11 )
 
 [node name="label" type="Label" parent="starter"]
 margin_left = 760.0
@@ -503,16 +502,15 @@ margin_top = 290.0
 margin_right = 1160.0
 margin_bottom = 790.0
 rect_min_size = Vector2( 400, 500 )
-rect_scale = Vector2( 0.1, 0.1 )
 rect_pivot_offset = Vector2( 200, 250 )
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 4
-text = "GO!"
+text = "3
+"
 align = 1
 valign = 1
-percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -523,7 +521,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="animation_player" type="AnimationPlayer" parent="lap"]
-anims/anim = SubResource( 12 )
+anims/anim = SubResource( 13 )
 
 [node name="label2" type="Label" parent="lap"]
 margin_left = 460.0
@@ -532,7 +530,7 @@ margin_right = 1460.0
 margin_bottom = 790.0
 rect_min_size = Vector2( 1000, 500 )
 rect_pivot_offset = Vector2( 500, 250 )
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 4
@@ -562,7 +560,7 @@ margin_right = 1000.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 1000, 250 )
 rect_pivot_offset = Vector2( 500, 250 )
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 4
@@ -606,7 +604,7 @@ __meta__ = {
 }
 
 [node name="animation_player" type="AnimationPlayer" parent="hightscore"]
-anims/appear = SubResource( 13 )
+anims/appear = SubResource( 15 )
 
 [node name="checker" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -7 )
@@ -639,6 +637,6 @@ one_shot = true
 [node name="tween_ghost" type="Tween" parent="."]
 
 [node name="audio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource( 9 )
 [connection signal="animation_finished" from="tuto/animation_player" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="timer_ghost" to="." method="_on_timer_ghost_timeout"]

@@ -24,7 +24,7 @@ func _on_AirConsole_message_received(device_id:int, data:Dictionary):
 	if data.has("finish"):
 		state=3
 		$pause_menu/control/v_box_container/button_resume.visible=false
-		$anim_pausemenu.play("open")
+		
 		$anim_joy.play_backwards("open")
 		
 	if data.has("letsgo"):
@@ -33,6 +33,8 @@ func _on_AirConsole_message_received(device_id:int, data:Dictionary):
 	if data.has("ready"):
 		ready=true
 		$anim_start.play("open")
+	if data.has("highscore"):
+		$anim_pausemenu.play("open")
 func _on_AirConsole_device_motion(data:Dictionary):
 	
 	

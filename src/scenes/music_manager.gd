@@ -55,6 +55,11 @@ func fade_in(stream_player,transition_duration=1.0,from_position=0.0):
 	tween_in.start()
 	stream_player.play(from_position)
 
+func stop(time_out):
+	if player1.is_playing():
+		fade_out(player1,time_out)
+	if player2.is_playing():
+		fade_out(player2,time_out)
 func _on_TweenOut_tween_completed(object, key):
 	# stop the music -- otherwise it continues to run at silent volume
 	object.stop()
